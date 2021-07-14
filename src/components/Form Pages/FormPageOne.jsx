@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import FormTextInput from '../FormInputs/FormTextInput';
-import FormNav from '../FormNav';
 
-export default function FormPageOne({ pageNumber, setPageNumber }) {
+export default function FormPageOne() {
   //state for the name
   const [firstName, setFirstName] = useState('');
   const [middleName, setMiddleName] = useState('');
@@ -22,10 +21,12 @@ export default function FormPageOne({ pageNumber, setPageNumber }) {
   return (
     <FormPageOneContainer>
       <HeaderContainer>
-        <h2>Welcome! To start tell me a little bit about yourself</h2>
-        <p>We need some basic Information like name, title, and if this is a solo project to get the ball rolling.</p>
+        <h2>Welcome! To start tell us a little bit about yourself</h2>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloribus, distinctio qui optio harum sequi autem.
+        </p>
       </HeaderContainer>
-      <StyledForm autocomplete='off'>
+      <StyledForm>
         <FormPageOneName>
           <FormTextInput
             labelId='Fname'
@@ -56,7 +57,7 @@ export default function FormPageOne({ pageNumber, setPageNumber }) {
           <label htmlFor='titleSelector'>Your Title</label>
           <select id='titleSelector' value={dropdown} onChange={(e) => setDropdown(e.target.value)}>
             <option value='Perfer not to say'>Perfer not to say</option>
-            <option value='Ph.D'>Ph.D</option>
+            <option value='Dr.'>Ph.D</option>
             <option value='MD.'>MD.</option>
             <option value='MS.'>MS.</option>
             <option value='MA.'>MA.</option>
@@ -100,21 +101,22 @@ export default function FormPageOne({ pageNumber, setPageNumber }) {
           </InventersLabel>
         </SoleInventer>
       </StyledForm>
-      <FormNav setPageNumber={setPageNumber} pageNumber={pageNumber} />
     </FormPageOneContainer>
   );
 }
 
 const HeaderContainer = styled.div`
-  margin: 50px 150px 50px 150px;
+  width: 100%;
 `;
 
 const FormPageOneContainer = styled.div`
-  flex: 6;
   font-family: 'Lato', sans-serif;
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 80vh;
   p {
-    margin-top: 15px;
+    margin: 30px 0px;
   }
 `;
 
@@ -123,10 +125,9 @@ const StyledForm = styled.form`
   flex-direction: column;
   align-items: center;
   box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.3);
-  width: 75%;
-  height: auto;
+  width: 100%;
+  height: 494px;
   color: #444;
-  margin: 50px 150px 150px 150px;
 `;
 
 const FormPageOneName = styled.div`
@@ -160,25 +161,7 @@ const FormPageOneTitle = styled.div`
 `;
 
 const InputTitle = styled.div`
-  margin-top: 15px;
-  input {
-    width: 100%;
-    margin-top: 8px;
-    padding: 8px 15px;
-    outline: none;
-    border: 2px solid lightgray;
-    transition: 0.2s;
-    border-radius: 8px;
-  }
-  input:hover {
-    transform: scale(1.02);
-    box-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
-  }
-  input:focus {
-    border: 2px solid #39b7ff;
-    box-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
-    transform: scale(1.02);
-  }
+  margin-top: 35px;
 `;
 
 const SoleInventer = styled.div`

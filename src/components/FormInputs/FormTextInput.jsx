@@ -5,19 +5,21 @@ export default function FormTextInput({ labelId, labelText, id, inputName, input
   return (
     <FormInputText>
       <label htmlFor={labelId}>{labelText}</label>
-      <input id={id} type='text' name={inputName} value={inputedValue} onChange={onChangeHandler} />
+      <input id={id} type='text' name={inputName} value={inputedValue} onChange={onChangeHandler} autoComplete='off' />
     </FormInputText>
   );
 }
 
 const FormInputText = styled.div`
   input {
-    margin-top: 8px;
+    margin: 8px 10px 0px 10px;
     padding: 8px 15px;
     outline: none;
     border: 2px solid lightgray;
     transition: 0.2s;
     border-radius: 8px;
+    width: 90%;
+    justify-content: space-between;
   }
   input:hover {
     transform: scale(1.02);

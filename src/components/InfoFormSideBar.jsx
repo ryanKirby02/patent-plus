@@ -8,8 +8,6 @@ export default function InfoFormSideBar() {
                 <ul>
                     <li>Creator Information</li>
                     <li>Project Details</li>
-                    <li>Novelty Determination</li>
-                    <li>Commercialization Determination</li>
                     <li>Final Review</li>
                 </ul>
             </SidebarProgress>
@@ -21,14 +19,10 @@ export default function InfoFormSideBar() {
 }
 
 const SidebarContainer = styled.div`
-    flex: 2;
     padding: 50px;
     background-color: #518AFF;
     color: white;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    height: 92.3vh;
     justify-content: space-evenly;
     font-family: 'Poppins', sans-serif;
 
@@ -44,5 +38,6 @@ const SidebarProgress = styled.div`
 `
 
 const SidebarNeedHelp = styled.div`
+    margin-top: 450px;
     color: white;
 `

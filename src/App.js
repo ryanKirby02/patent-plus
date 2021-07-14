@@ -1,5 +1,5 @@
 import Navbar from "./components/Navbar";
-import InfoPage from "./Pages/InfoPage";
+import InfoPage from "./Pages/InfoForm";
 
 function App() {
   return (
