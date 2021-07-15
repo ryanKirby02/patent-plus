@@ -1,14 +1,15 @@
 import React from 'react'
 import styled from 'styled-components';
 
-export default function InfoFormSideBar() {
+export default function InfoFormSideBar({pageNumber, setPageNumber}) {
     return (
         <SidebarContainer>
             <SidebarProgress>
                 <ul>
-                    <li>Creator Information</li>
-                    <li>Project Details</li>
-                    <li>Final Review</li>
+                    <li onClick={() => setPageNumber(1)}>Creator Information</li>
+                    <li onClick={() => setPageNumber(2)}>Invention Details</li>
+                    <li onClick={() => setPageNumber(3)}>Product Details</li>
+                    <li onClick={() => setPageNumber(4)}>Final Review</li>
                 </ul>
             </SidebarProgress>
             <SidebarNeedHelp>
@@ -19,7 +20,8 @@ export default function InfoFormSideBar() {
 }
 
 const SidebarContainer = styled.div`
-    padding: 50px;
+    padding: 100px;
+    width: 25vw;
     background-color: #518AFF;
     color: white;
     height: 92.3vh;
@@ -32,12 +34,15 @@ const SidebarProgress = styled.div`
     ul{
         list-style: none;
         li {
-            padding-top: 60px;
+            margin-top: 60px;
+            cursor: pointer;
         }
     }
 `
 
 const SidebarNeedHelp = styled.div`
-    margin-top: 450px;
+    margin-top: 350px;
+    font-size: 12px;
+    width: 100%;
     color: white;
 `

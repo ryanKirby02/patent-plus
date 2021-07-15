@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
+import { reduxForm } from 'redux-form';
 import styled from 'styled-components';
-import FormTextInput from '../FormInputs/FormTextInput';
+import { FormTextInput } from '../FormInputs/FormTextInput';
+import FormNav from '../FormNav';
 
-export default function FormPageOne() {
-  //state for the name
-  const [firstName, setFirstName] = useState('');
-  const [middleName, setMiddleName] = useState('');
-  const [lastName, setLastName] = useState('');
+import { Field } from 'redux-form';
+
+let FormPageOne = (props) => {
   //state for the title
   const [dropdown, setDropdown] = useState('Perfer not to say');
-  const [inputedTitle, setInputedTitle] = useState('');
 
-  //state for radio inputs
   const [inventerSelected, setInventerSelected] = useState(null);
 
   const selectHandler = async (e) => {
@@ -26,56 +24,34 @@ export default function FormPageOne() {
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloribus, distinctio qui optio harum sequi autem.
         </p>
       </HeaderContainer>
-      <StyledForm>
+      <StyledForm onSubmit={props.handleSubmit}>
         <FormPageOneName>
-          <FormTextInput
-            labelId='Fname'
-            labelText='First Name *'
-            id='Fname'
-            name='firstName'
-            value={firstName}
-            onChangeHandler={(e) => setFirstName(e.target.value)}
-          />
-          <FormTextInput
-            labelId='Mname'
-            labelText='Middle Name'
-            id='Mname'
-            name='middleName'
-            value={middleName}
-            onChangeHandler={(e) => setMiddleName(e.target.value)}
-          />
-          <FormTextInput
-            labelId='Lname'
-            labelText='Last Name *'
-            id='Lname'
-            name='lastName'
-            value={lastName}
-            onChangeHandler={(e) => setLastName(e.target.value)}
-          />
+          <FormTextInput labelId='Fname' labelText='First Name *' id='Fname' inputName='firstName' />
+          <FormTextInput labelId='Mname' labelText='Middle Name' id='Mname' inputName='middleName' />
+          <FormTextInput labelId='Lname' labelText='Last Name *' id='Lname' inputName='lastName' />
         </FormPageOneName>
         <FormPageOneTitle>
           <label htmlFor='titleSelector'>Your Title</label>
-          <select id='titleSelector' value={dropdown} onChange={(e) => setDropdown(e.target.value)}>
+          <Field component='select' id='titleSelector' name='Title' onChange={(e) => setDropdown(e.target.value)}>
             <option value='Perfer not to say'>Perfer not to say</option>
             <option value='Dr.'>Ph.D</option>
             <option value='MD.'>MD.</option>
             <option value='MS.'>MS.</option>
             <option value='MA.'>MA.</option>
             <option value='Other'>Other</option>
-          </select>
+          </Field>
           {dropdown === 'Other' && (
             <InputTitle>
               <FormTextInput
                 labelId='OtherTitle'
+                inputName='InputedTitle'
                 labelText='Please tell us your title'
                 id='OtherTitle'
-                value={inputedTitle}
-                onChangeHandler={(e) => setInputedTitle(e.target.value)}
               />
             </InputTitle>
           )}
         </FormPageOneTitle>
-        <label style={{ marginTop: '100px', fontWeight: 'bold' }} htmlFor='soloInventer'>
+        <label style={{ marginTop: '35px', fontWeight: 'bold' }} htmlFor='soloInventer'>
           Are there any other inventers?
         </label>
         <SoleInventer id='soloInventer'>
@@ -100,10 +76,17 @@ export default function FormPageOne() {
             No
           </InventersLabel>
         </SoleInventer>
+        <FormNav pageNumber={props.pageNumber} />
       </StyledForm>
     </FormPageOneContainer>
   );
-}
+};
+
+FormPageOne = reduxForm({
+  form: 'Step One',
+})(FormPageOne);
+
+export default FormPageOne;
 
 const HeaderContainer = styled.div`
   width: 100%;
@@ -126,7 +109,7 @@ const StyledForm = styled.form`
   align-items: center;
   box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.3);
   width: 100%;
-  height: 494px;
+  height: 600px;
   color: #444;
 `;
 
@@ -161,6 +144,7 @@ const FormPageOneTitle = styled.div`
 `;
 
 const InputTitle = styled.div`
+  width: 100%;
   margin-top: 35px;
 `;
 

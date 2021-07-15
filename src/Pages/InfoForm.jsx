@@ -1,19 +1,24 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import FormPageOne from '../components/Form Pages/FormPageOne';
-import InfoFormSideBar from '../components/InfoFormSideBar';
-import FormNav from '../components/FormNav';
+import FormPageThree from '../components/Form Pages/FormPageThree';
 import FormPageTwo from '../components/Form Pages/FormPageTwo';
 
-export default function InfoPage() {
-  const [pageNumber, setPageNumber] = useState(1);
+export default function InfoPage({pageNumber, setPageNumber}) {
+  let [data, setData] = useState([]);
+
+  const submit = (values) => {
+    setData([...data, values]);
+    if (pageNumber >= 4) return;
+    setPageNumber((pageNumber = pageNumber + 1));
+  };
+
   return (
     <InfoPageContainer>
-      <InfoFormSideBar />
       <FormContainer>
-        {pageNumber === 1 && <FormPageOne />}
-        {pageNumber === 2 && <FormPageTwo />}
-        <FormNav setPageNumber={setPageNumber} pageNumber={pageNumber} />
+        {pageNumber === 1 && <FormPageOne onSubmit={submit} pageNumber={pageNumber} />}
+        {pageNumber === 2 && <FormPageTwo onSubmit={submit} pageNumber={pageNumber} />}
+        {pageNumber === 3 && <FormPageThree onSubmit={submit} pageNumber={pageNumber} />}
       </FormContainer>
     </InfoPageContainer>
   );
@@ -27,7 +32,7 @@ const InfoPageContainer = styled.div`
 `;
 
 const FormContainer = styled.div`
-  margin-left: 350px;
+  margin-left: 250px;
   display: flex;
   flex-direction: column;
-`
+`;

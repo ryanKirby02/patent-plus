@@ -1,11 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function FormRadioInput({ Icon, Text, value, onChangeHandler }) {
+import { Field } from 'redux-form';
+
+export default function FormRadioInputLg({ Icon, Text, value, onChangeHandler }) {
   return (
     <RadioButtonContainer>
       <Label>
-        <input type='radio' name='radio' value={value} onChange={onChangeHandler} />
+        <Field component='input' type='radio' name='Invention Type' value={value} onChange={onChangeHandler} />
         <RadioButton className='RadioBtn'>
           <CheckIcon className='checkIcon las la-check'></CheckIcon>
           <RadioButtonContent>
@@ -24,12 +26,12 @@ const Label = styled.label`
   input {
     display: none;
   }
-  input:checked+.RadioBtn {
+  input:checked + .RadioBtn {
     border: 3px solid #518aff;
   }
-  input:checked+ .RadioBtn > .checkIcon {
-      opacity: 1;
-      transform: translateX(-50%) scale(1);
+  input:checked + .RadioBtn > .checkIcon {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
   }
 `;
 
@@ -50,14 +52,20 @@ const CheckIcon = styled.i`
 
 const RadioButton = styled.span`
   margin: 10px;
-  width: 100px;
-  height: 150px;
+  width: 200px;
+  height: 250px;
   border: 3px solid transparent;
   border-radius: 6px;
   display: inline-block;
   position: relative;
   text-align: center;
   box-shadow: 0 0 20px #c3c3c367;
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+  :hover {
+    backface-visibility: hidden;
+    transform: scale(1.04);
+  }
 `;
 
 const RadioButtonContent = styled.div`
@@ -66,11 +74,11 @@ const RadioButtonContent = styled.div`
   position: absolute;
   top: 40%;
   left: 50%;
-  font-size: 12px;
+  font-size: 16px;
   transform: translate(-50%, -50%);
   i {
-      color: #518aff;
-      line-height: 80px;
-      font-size: 60px;
+    color: #518aff;
+    line-height: 100px;
+    font-size: 80px;
   }
 `;

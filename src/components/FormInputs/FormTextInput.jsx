@@ -1,24 +1,26 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function FormTextInput({ labelId, labelText, id, inputName, inputedValue, onChangeHandler }) {
+import {Field} from 'redux-form'
+
+export function FormTextInput({ labelId, labelText, id, inputName, }) {
   return (
     <FormInputText>
       <label htmlFor={labelId}>{labelText}</label>
-      <input id={id} type='text' name={inputName} value={inputedValue} onChange={onChangeHandler} autoComplete='off' />
+      <Field component='input' id={id} type='text' name={inputName}  autoComplete='off' />
     </FormInputText>
   );
 }
 
 const FormInputText = styled.div`
   input {
-    margin: 8px 10px 0px 10px;
+    margin: 8px 15px 0px 0px;
     padding: 8px 15px;
     outline: none;
     border: 2px solid lightgray;
     transition: 0.2s;
     border-radius: 8px;
-    width: 90%;
+    width: 100%;
     justify-content: space-between;
   }
   input:hover {
