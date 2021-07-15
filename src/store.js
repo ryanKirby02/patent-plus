@@ -3,10 +3,11 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { reducer as formReducer } from 'redux-form';
 
-import { formDataReducer } from './reducers/userDataReducer';
+import { formDataReducer, formStepTwoReducer } from './reducers/userDataReducer';
 
 const reducer = combineReducers({
-  formData: formDataReducer,
+  formStepTwo: formStepTwoReducer,
+  createrData: formDataReducer,
   form: formReducer,
 });
 

@@ -7,7 +7,7 @@ export default function FormRadioInputSm({ Icon, Text, value, onChangeHandler })
   return (
     <RadioButtonContainer>
       <Label>
-        <Field component='input' type='radio' name='Category' value={value} onChange={onChangeHandler} />
+        <Field component='input' type='radio' name='category' value={value} onChange={onChangeHandler} />
         <RadioButton className='RadioBtn'>
           <CheckIcon className='checkIcon las la-check'></CheckIcon>
           <RadioButtonContent>

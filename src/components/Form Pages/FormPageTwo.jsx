@@ -1,5 +1,5 @@
-import React from 'react';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import styled from 'styled-components';
 import FormRadioInputSm from '../FormInputs/FormRadioInputSm';
@@ -9,10 +9,15 @@ import FormNav from '../FormNav';
 let FormPageTwo = (props) => {
   const [selectedFeild, setSelectedFeild] = useState(null);
 
+  const createrData = useSelector((state) => state.createrData);
+  const {stepOne} = createrData
+
   return (
     <PageTwoContainer>
       <HeaderContainer>
-        <h2>Okay Name, now we know about you, tell us about your invention</h2>
+        <h2>
+          Okay {stepOne.lastName}, now we know about you, tell us about your invention
+        </h2>
       </HeaderContainer>
       <StyledForm onSubmit={props.handleSubmit}>
         <FormInputContainer>
@@ -20,12 +25,12 @@ let FormPageTwo = (props) => {
             labelId='InvenName'
             labelText='What is the name of your invention? *'
             id='InvenName'
-            inputName='InvenName'
+            inputName='invenName'
           />
         </FormInputContainer>
         <InvenTypeContainer>
           <label className='InvenTypeLabel' htmlFor='InvenTypeContainer'>
-            What category does your invention fall in?
+            What category does your invention fall in? *
           </label>
           <InvenCardContainer id='InvenTypeContainer'>
             <FormRadioInputSm
@@ -72,7 +77,7 @@ let FormPageTwo = (props) => {
               labelId='InvenCategory'
               labelText='Please Enter a Category *'
               id='InvenCategory'
-              inputName='InvenCategory'
+              inputName='invenCategory'
             />
           </FormInputContainer>
         ) : null}

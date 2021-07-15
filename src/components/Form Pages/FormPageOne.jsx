@@ -32,7 +32,7 @@ let FormPageOne = (props) => {
         </FormPageOneName>
         <FormPageOneTitle>
           <label htmlFor='titleSelector'>Your Title</label>
-          <Field component='select' id='titleSelector' name='Title' onChange={(e) => setDropdown(e.target.value)}>
+          <Field component='select' id='titleSelector' name='title' onChange={(e) => setDropdown(e.target.value)}>
             <option value='Perfer not to say'>Perfer not to say</option>
             <option value='Dr.'>Ph.D</option>
             <option value='MD.'>MD.</option>

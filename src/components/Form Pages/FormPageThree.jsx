@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { reduxForm } from 'redux-form';
 import { FormTextInput } from '../FormInputs/FormTextInput';
@@ -7,15 +8,19 @@ import FormNav from '../FormNav';
 
 let FormPageThree = (props) => {
   const [selectedFeild, setSelectedFeild] = useState(null);
+  const formStepTwo = useSelector((state) => state.formStepTwo);
+  const {stepTwo} = formStepTwo
+
+
   return (
     <PageThreeContainer>
       <HeaderContainer>
-        <h2>We need to know one last thing about Invention Name to continue</h2>
+        <h2>We need to know one last thing about {stepTwo.invenName} to continue</h2>
       </HeaderContainer>
       <StyledForm onSubmit={props.handleSubmit}>
         <InvenTypeContainer>
           <label className='InvenTypeLabel' htmlFor='InvenTypeContainer'>
-            What category does your invention fall in?
+            What type of product is your invention? *
           </label>
           <InvenCardContainer id='InvenTypeContainer'>
             <FormRadioInputLg
