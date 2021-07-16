@@ -7,7 +7,7 @@ export default function FormRadioInputLg({ Icon, Text, value, onChangeHandler })
   return (
     <RadioButtonContainer>
       <Label>
-        <Field component='input' type='radio' name='Invention Type' value={value} onChange={onChangeHandler} />
+        <Field component='input' type='radio' name='productType' value={value} onChange={onChangeHandler} />
         <RadioButton className='RadioBtn'>
           <CheckIcon className='checkIcon las la-check'></CheckIcon>
           <RadioButtonContent>

@@ -1,12 +1,13 @@
 import { useDispatch } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import FormPageOne from '../components/Form Pages/FormPageOne';
 import FormPageThree from '../components/Form Pages/FormPageThree';
 import FormPageTwo from '../components/Form Pages/FormPageTwo';
 
-import { formStepOne, submitStep2 } from '../actions/FormActions';
+import { formStepOne, submitStep2, submitStepThree } from '../actions/FormActions';
 
-export default function InfoPage({ pageNumber, setPageNumber }) {
+const InfoPage = ({ pageNumber, setPageNumber, history }) => {
   const dispatch = useDispatch();
 
   const submitStepOne = async (values) => {
@@ -16,32 +17,37 @@ export default function InfoPage({ pageNumber, setPageNumber }) {
   };
 
   const submitStepTwo = async (values) => {
-    console.log(values)
     const { invenName, category } = values;
     await dispatch(submitStep2(invenName, category));
     setPageNumber((pageNumber = pageNumber + 1));
-  }
+  };
+
+  const formSubmitStepThree = async (values) => {
+    const { productType } = values;
+    await dispatch(submitStepThree(productType));
+    history.push('/final');
+  };
 
   return (
     <InfoPageContainer>
-      <FormContainer>
-        {pageNumber === 1 && <FormPageOne onSubmit={submitStepOne} pageNumber={pageNumber} />}
-        {pageNumber === 2 && <FormPageTwo onSubmit={submitStepTwo} pageNumber={pageNumber} />}
-        {pageNumber === 3 && <FormPageThree pageNumber={pageNumber} />}
-      </FormContainer>
+      {pageNumber === 1 && (
+        <FormPageOne onSubmit={submitStepOne} pageNumber={pageNumber} setPageNumber={setPageNumber} />
+      )}
+      {pageNumber === 2 && (
+        <FormPageTwo onSubmit={submitStepTwo} pageNumber={pageNumber} setPageNumber={setPageNumber} />
+      )}
+      {pageNumber === 3 && (
+        <FormPageThree onSubmit={formSubmitStepThree} pageNumber={pageNumber} setPageNumber={setPageNumber} />
+      )}
     </InfoPageContainer>
   );
-}
+};
+
+export default withRouter(InfoPage);
 
 const InfoPageContainer = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
   font-family: 'Lato', sans-serif;
-`;
-
-const FormContainer = styled.div`
-  margin-left: 250px;
-  display: flex;
-  flex-direction: column;
 `;

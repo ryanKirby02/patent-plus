@@ -1,8 +1,7 @@
 import Navbar from './components/Navbar';
 import InfoForm from './Pages/InfoForm';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import InfoFormSideBar from './components/InfoFormSideBar';
-import styled from 'styled-components';
+import FinalReview from './Pages/FinalReview';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { useState } from 'react';
 
 function App() {
@@ -11,22 +10,17 @@ function App() {
   return (
     <>
       <Navbar />
-      <AppContainer>
-        <InfoFormSideBar pageNumber={pageNumber} setPageNumber={setPageNumber} />
         <Router>
-          <Switch>
-            <Route path='/'>
+            <Route path='/' exact>
               <InfoForm pageNumber={pageNumber} setPageNumber={setPageNumber} />
             </Route>
-          </Switch>
+            <Route path='/final' exact>
+              <FinalReview pageNumber={pageNumber} setPageNumber={setPageNumber} />
+            </Route>
         </Router>
-      </AppContainer>
     </>
   );
 }
 
-const AppContainer = styled.div`
-  display: flex;
-`
 
 export default App;

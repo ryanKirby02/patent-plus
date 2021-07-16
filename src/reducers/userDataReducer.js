@@ -23,3 +23,29 @@ export const formStepTwoReducer = (state = {}, action) => {
             return state
     }
 }
+
+export const formStepThreeReducer = (state = {}, action) => {
+    switch (action.type) {
+        case 'FORM_STEP_THREE_SUBMIT':
+            return {loading: true}
+        case 'FORM_STEP_THREE_SUCCESS':
+            return {loading: false, stepThree: action.payload}
+        case 'FORM_STEP_THREE_FAIL':
+            return {loading: false, error: action.payload}
+        default:
+            return state
+    }
+}
+export const formDataReviewReducer = (state = {}, action) => {
+    switch (action.type) {
+        case 'FORM_DATA_REVIEW_REQUEST':
+            return {loading: true}
+        case 'FORM_DATA_REVIEW_SUCCESS':
+            return {loading: false, requestedData: action.payload}
+        case 'FORM_DATA_REVIEW_FAIL':
+            return {loading: false, error: action.payload}
+        default:
+            return state
+    }
+}
+

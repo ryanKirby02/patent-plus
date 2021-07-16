@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export default function FormNav({ pageNumber }) {
   return (
     <FormNavContainer>
-      <p>{pageNumber} of 5</p>
+      <p>{pageNumber} of 3</p>
       <StyledButton type='submit'>Next &gt;</StyledButton>
     </FormNavContainer>
   );
@@ -16,6 +16,9 @@ const FormNavContainer = styled.div`
   align-items: center;
   margin-top: 50px;
   width: 80%;
+  p {
+    font-weight: bold;
+  }
 `;
 
 const StyledButton = styled.button`

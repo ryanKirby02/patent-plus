@@ -5,7 +5,7 @@ import App from './App';
 import store from './store'
 
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider store={store} fluid='true'>
     <App />
   </Provider>,
   document.getElementById('root')

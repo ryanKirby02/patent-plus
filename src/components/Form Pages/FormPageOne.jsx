@@ -5,6 +5,7 @@ import { FormTextInput } from '../FormInputs/FormTextInput';
 import FormNav from '../FormNav';
 
 import { Field } from 'redux-form';
+import InfoFormSideBar from '../InfoFormSideBar';
 
 let FormPageOne = (props) => {
   //state for the title
@@ -17,68 +18,71 @@ let FormPageOne = (props) => {
   };
 
   return (
-    <FormPageOneContainer>
-      <HeaderContainer>
-        <h2>Welcome! To start tell us a little bit about yourself</h2>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloribus, distinctio qui optio harum sequi autem.
-        </p>
-      </HeaderContainer>
-      <StyledForm onSubmit={props.handleSubmit}>
-        <FormPageOneName>
-          <FormTextInput labelId='Fname' labelText='First Name *' id='Fname' inputName='firstName' />
-          <FormTextInput labelId='Mname' labelText='Middle Name' id='Mname' inputName='middleName' />
-          <FormTextInput labelId='Lname' labelText='Last Name *' id='Lname' inputName='lastName' />
-        </FormPageOneName>
-        <FormPageOneTitle>
-          <label htmlFor='titleSelector'>Your Title</label>
-          <Field component='select' id='titleSelector' name='title' onChange={(e) => setDropdown(e.target.value)}>
-            <option value='Perfer not to say'>Perfer not to say</option>
-            <option value='Dr.'>Ph.D</option>
-            <option value='MD.'>MD.</option>
-            <option value='MS.'>MS.</option>
-            <option value='MA.'>MA.</option>
-            <option value='Other'>Other</option>
-          </Field>
-          {dropdown === 'Other' && (
-            <InputTitle>
-              <FormTextInput
-                labelId='OtherTitle'
-                inputName='InputedTitle'
-                labelText='Please tell us your title'
-                id='OtherTitle'
-              />
-            </InputTitle>
-          )}
-        </FormPageOneTitle>
-        <label style={{ marginTop: '35px', fontWeight: 'bold' }} htmlFor='soloInventer'>
-          Are there any other inventers?
-        </label>
-        <SoleInventer id='soloInventer'>
-          <InventersInput
-            type='radio'
-            value='Yes'
-            id='OptionYes'
-            onChange={(e) => selectHandler(e)}
-            checked={inventerSelected === 'Yes'}
-          />
-          <InventersLabel className='radio__label' htmlFor='OptionYes'>
-            Yes
-          </InventersLabel>
-          <InventersInput
-            type='radio'
-            value='No'
-            id='OptionNo'
-            onChange={(e) => selectHandler(e)}
-            checked={inventerSelected === 'No'}
-          />
-          <InventersLabel className='radio__label' htmlFor='OptionNo'>
-            No
-          </InventersLabel>
-        </SoleInventer>
-        <FormNav pageNumber={props.pageNumber} />
-      </StyledForm>
-    </FormPageOneContainer>
+    <Container>
+      <InfoFormSideBar setPageNumber={props.setPageNumber} />
+      <FormPageOneContainer>
+        <HeaderContainer>
+          <h2>Welcome! To start tell us a little bit about yourself</h2>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloribus, distinctio qui optio harum sequi autem.
+          </p>
+        </HeaderContainer>
+        <StyledForm onSubmit={props.handleSubmit}>
+          <FormPageOneName>
+            <FormTextInput labelId='Fname' labelText='First Name *' id='Fname' inputName='firstName' />
+            <FormTextInput labelId='Mname' labelText='Middle Name' id='Mname' inputName='middleName' />
+            <FormTextInput labelId='Lname' labelText='Last Name *' id='Lname' inputName='lastName' />
+          </FormPageOneName>
+          <FormPageOneTitle>
+            <label htmlFor='titleSelector'>Your Title</label>
+            <Field component='select' id='titleSelector' name='title' onChange={(e) => setDropdown(e.target.value)}>
+              <option value='Perfer not to say'>Perfer not to say</option>
+              <option value='Dr.'>Ph.D</option>
+              <option value='MD.'>MD.</option>
+              <option value='MS.'>MS.</option>
+              <option value='MA.'>MA.</option>
+              <option value='Other'>Other</option>
+            </Field>
+            {dropdown === 'Other' && (
+              <InputTitle>
+                <FormTextInput
+                  labelId='OtherTitle'
+                  inputName='InputedTitle'
+                  labelText='Please tell us your title'
+                  id='OtherTitle'
+                />
+              </InputTitle>
+            )}
+          </FormPageOneTitle>
+          <label style={{ marginTop: '35px', fontWeight: 'bold' }} htmlFor='soloInventer'>
+            Are there any other inventers?
+          </label>
+          <SoleInventer id='soloInventer'>
+            <InventersInput
+              type='radio'
+              value='Yes'
+              id='OptionYes'
+              onChange={(e) => selectHandler(e)}
+              checked={inventerSelected === 'Yes'}
+            />
+            <InventersLabel className='radio__label' htmlFor='OptionYes'>
+              Yes
+            </InventersLabel>
+            <InventersInput
+              type='radio'
+              value='No'
+              id='OptionNo'
+              onChange={(e) => selectHandler(e)}
+              checked={inventerSelected === 'No'}
+            />
+            <InventersLabel className='radio__label' htmlFor='OptionNo'>
+              No
+            </InventersLabel>
+          </SoleInventer>
+          <FormNav pageNumber={props.pageNumber} />
+        </StyledForm>
+      </FormPageOneContainer>
+    </Container>
   );
 };
 
@@ -88,6 +92,11 @@ FormPageOne = reduxForm({
 
 export default FormPageOne;
 
+const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 const HeaderContainer = styled.div`
   width: 100%;
 `;
@@ -96,7 +105,8 @@ const FormPageOneContainer = styled.div`
   font-family: 'Lato', sans-serif;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  margin-left: 250px;
+  margin-top: 35px;
   height: 80vh;
   p {
     margin: 30px 0px;
@@ -107,7 +117,7 @@ const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
   width: 100%;
   height: 600px;
   color: #444;
